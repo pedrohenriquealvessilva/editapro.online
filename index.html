@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EditaPRO | Transforme Suas Fotos</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- PALETA DE CORES E ESTILOS GERAIS --- */
+        :root {
+            --cor-primaria: #7c3aed; /* Roxo Vibrante */
+            --cor-primaria-hover: #6d28d9;
+            --cor-secundaria: #1f2937; /* Cinza Escuro Quase Preto */
+            --cor-texto: #4b5563; /* Cinza Médio para texto */
+            --cor-fundo: #f9fafb; /* Cinza bem claro */
+            --cor-branco: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; color: var(--cor-texto); background-color: var(--cor-branco); line-height: 1.7; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3 { font-weight: 700; color: var(--cor-secundaria); margin-bottom: 20px; }
+        h2 { text-align: center; font-size: 2.8rem; margin-bottom: 60px; }
+        section { padding: 100px 0; overflow: hidden; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* --- BOTÕES DE ORÇAMENTO (CTA) --- */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--cor-primaria), #a855f7);
+            color: var(--cor-branco);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(124, 58, 237, 0.3);
+            text-transform: uppercase;
+            border: none;
+        }
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(124, 58, 237, 0.4);
+        }
+        /* Container para botões, usado apenas na seção de preços para alinhamento */
+        .pricing-button-container {
+            text-align: center; /* Para centralizar o botão dentro do card */
+        }
+
+        /* --- SEÇÃO HERO (PRINCIPAL) --- */
+        #hero { background-color: var(--cor-fundo); text-align: center; padding: 120px 0 80px 0; }
+        .logo { font-size: 2.5rem; font-weight: 700; background: -webkit-linear-gradient(45deg, var(--cor-primaria), #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 40px; display: inline-block; }
+        #hero h1 { font-size: 3.5rem; max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.2; }
+        #hero p { font-size: 1.25rem; max-width: 750px; margin: 0 auto 40px auto; }
+        
+        /* --- ESTRUTURA DO CARROSSEL --- */
+        .carousel { position: relative; max-width: 900px; margin: 0 auto; }
+        .carousel-wrapper { overflow: hidden; border-radius: 15px; }
+        .carousel-slides { display: flex; transition: transform 0.5s ease-in-out; }
+        .carousel-slide { min-width: 100%; box-sizing: border-box; }
+        .carousel-button { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 24px; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: all 0.2s ease; color: var(--cor-primaria); }
+        .carousel-button:hover { background-color: var(--cor-branco); transform: translateY(-50%) scale(1.1); }
+        .prev-button { left: -25px; }
+        .next-button { right: -25px; }
+
+        /* --- SEÇÃO PORTFOLIO --- */
+        #portfolio { background-color: var(--cor-branco); }
+        .before-after-slide { display: flex; gap: 15px; padding: 10px; background-color: var(--cor-fundo); }
+        .before-after-item { flex: 1; }
+        .before-after-item img { border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+        .before-after-item h3 { text-align: center; margin-top: 10px; color: var(--cor-secundaria); }
+
+        /* --- SEÇÃO DE PREÇOS --- */
+        #pricing {
+            background-color: var(--cor-fundo);
+        }
+        .pricing-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .pricing-card {
+            background-color: var(--cor-branco);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 400px;
+        }
+        .pricing-card.popular {
+            border-color: var(--cor-primaria);
+            transform: scale(1.05);
+            position: relative;
+        }
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, var(--cor-primaria), #a855f7);
+            color: var(--cor-branco);
+            padding: 5px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            color: var(--cor-secundaria);
+        }
+        .price {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--cor-primaria);
+            margin: 20px 0;
+        }
+        .price span {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--cor-texto);
+        }
+        .pricing-card ul {
+            list-style: none;
+            margin: 20px 0 30px 0;
+        }
+        .pricing-card ul li {
+            margin-bottom: 10px;
+        }
+
+        /* --- SEÇÃO DEPOIMENTOS --- */
+        #testimonials { background-color: #111827; color: var(--cor-fundo); }
+        #testimonials h2 { color: var(--cor-branco); }
+        .testimonial-slide { padding: 40px; text-align: center; }
+        .testimonial-slide img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 20px auto; border: 4px solid var(--cor-primaria); }
+        .testimonial-quote { font-size: 1.2rem; font-style: italic; max-width: 700px; margin: 0 auto 20px auto; }
+        .testimonial-author { font-weight: 700; font-size: 1.1rem; color: var(--cor-branco); }
+
+        /* --- SEÇÃO DE CHAMADA FINAL --- */
+        #final-cta { background: linear-gradient(45deg, var(--cor-primaria), #a855f7); color: var(--cor-branco); text-align: center; }
+        #final-cta h2 { color: var(--cor-branco); font-size: 3rem; }
+        #final-cta p { font-size: 1.2rem; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        /* --- RODAPÉ --- */
+        .footer { background-color: var(--cor-secundaria); color: #9ca3af; text-align: center; padding: 30px 0; }
+        
+        /* --- RESPONSIVIDADE (FONTES E LAYOUTS) --- */
+        @media (max-width: 768px) {
+            h1, #hero h1 { font-size: 2.2rem !important; }
+            h2, #final-cta h2 { font-size: 1.8rem !important; }
+            p, #hero p, .testimonial-quote { font-size: 1rem; }
+            section { padding: 60px 0; }
+            .btn { font-size: 0.9rem; padding: 14px 28px; }
+            
+            #hero { padding: 80px 0 60px 0; }
+            .carousel-button { width: 40px; height: 40px; font-size: 20px; }
+            .prev-button { left: 10px; }
+            .next-button { right: 10px; }
+            .before-after-slide { flex-direction: column; }
+
+            .pricing-card.popular { transform: scale(1); } /* Remove zoom no mobile para economizar espaço */
+            .pricing-grid { gap: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+
+        <!-- SEÇÃO PRINCIPAL (HERO) -->
+        <section id="hero">
+            <div class="container">
+                <div class="logo">EditaPro</div>
+                <h2>Dê Vida Nova às Suas Fotos com Edição Profissional</h2>
+                <p>Transformamos suas imagens comuns em obras de arte. Rápido, acessível e com qualidade impressionante.</p>
+                <!-- Botões removidos desta seção -->
+            </div>
+        </section>
+
+        <!-- SEÇÃO PORTFOLIO (ANTES E DEPOIS) -->
+        <section id="portfolio">
+            <div class="container">
+                <h2>EDIÇÕES REAIS:</h2>
+                
+                <div id="portfolio-carousel" class="carousel">
+                    <div class="carousel-wrapper">
+                        <div class="carousel-slides">
+                            <!-- Slide 1 -->
+                            <div class="carousel-slide">
+                                <div class="before-after-slide">
+                                    <div class="before-after-item">
+                                        <h3>ANTES</h3>
+                                        <img src="https://i.ibb.co/QFBpR33W/22b08ac2-846c-413b-b0ac-f8461bbd9d51.png" alt="Antes - Projeto 1">
+                                    </div>
+                                    <div class="before-after-item">
+                                        <h3>DEPOIS</h3>
+                                        <img src="https://i.ibb.co/LWM4nMM/c8c48212-0cb0-401a-9f30-d6d66d5ff372.png" alt="Depois - Projeto 1">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="carousel-slide">
+                                <div class="before-after-slide">
+                                    <div class="before-after-item">
+                                        <h3>ANTES</h3>
+                                        <img src="https://i.ibb.co/tMf15ZWR/1758599030211-6614624de8fd174065247be5be6ed38d.jpg" alt="Antes - Projeto 2">
+                                    </div>
+                                    <div class="before-after-item">
+                                        <h3>DEPOIS</h3>
+                                        <img src="https://i.ibb.co/MkFp0NRF/1758599050646-93fb52f0-14b7-467d-ac70-d34557f326c3.png" alt="Depois - Projeto 2">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="carousel-slide">
+                                <div class="before-after-slide">
+                                    <div class="before-after-item">
+                                        <h3>ANTES</h3>
+                                        <img src="https://i.ibb.co/qMG9w2GJ/1758599476679-01.jpg" alt="Antes - Projeto 3">
+                                    </div>
+                                    <div class="before-after-item">
+                                        <h3>DEPOIS</h3>
+                                        <img src="https://i.ibb.co/NdWWMwHR/1758599620442-afddd5d0-d047-4dfc-b187-559b74bdb2a8.png" alt="Depois - Projeto 3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-button prev-button">&#10094;</button>
+                    <button class="carousel-button next-button">&#10095;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE PREÇOS -->
+        <section id="pricing">
+            <div class="container">
+                <h2>Escolha o Plano Ideal para Você</h2>
+                <div class="pricing-grid">
+                    <!-- PLANO 1 -->
+                    <div class="pricing-card">
+                        <h3>Foto Avulsa</h3>
+                        <div class="price">R$19<span>,90</span></div>
+                        <ul>
+                            <li>✔️ Edição profissional de 1 foto</li>
+                            <li>✔️ Qualquer tipo de modificação</li>
+                            <li>✔️ Ajustes, remoção, correção etc</li>
+                            <li>✔️ Entrega em até 24h</li>
+                        </ul>
+                        <div class="pricing-button-container">
+                            <a href="https://pay.cakto.com.br/hns6tdi_540424" class="btn" target="_blank">Editar uma foto</a>
+                        </div>
+                    </div>
+                    <!-- PLANO 2 (POPULAR) -->
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">Mais Popular</div>
+                        <h3>Pacote Essencial</h3>
+                        <div class="price">R$47<span>,00</span></div>
+                         <ul>
+                            <li>✔️ Edição profissional de 5 fotos</li>
+                            <li>✔️ <strong>Economia de mais de 50%</strong></li>
+                            <li>✔️ Qualquer tipo de modificação</li>
+                            <li>✔️ 01 edição de brinde</li>
+                            <li>✔️ Entrega prioritária</li>
+                        </ul>
+                        <div class="pricing-button-container">
+                            <a href="https://pay.cakto.com.br/5ah6233" class="btn" target="_blank">Quero o pacote com 5!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SEÇÃO DE DEPOIMENTOS -->
+        <section id="testimonials">
+            <div class="container">
+                <h2>A Opinião de Nossos Clientes</h2>
+                
+                <div id="testimonials-carousel" class="carousel">
+                    <div class="carousel-wrapper">
+                        <div class="carousel-slides">
+                            <!-- Depoimento 1 -->
+                            <div class="carousel-slide">
+                                <div class="testimonial-slide">
+                                    <img src="https://i.pravatar.cc/150?img=1" alt="Cliente Satisfeito 1">
+                                    <p class="testimonial-quote">"O nível de profissionalismo e o resultado final superaram todas as expectativas!"</p>
+                                    <p class="testimonial-author">- Joabe Mendes, CEO da InovaTech</p>
+                                </div>
+                            </div>
+                            <!-- Depoimento 2 -->
+                            <div class="carousel-slide">
+                                <div class="testimonial-slide">
+                                    <img src="https://i.pravatar.cc/150?img=2" alt="Cliente Satisfeito 2">
+                                    <p class="testimonial-quote">"Transformaram completamente nossa presença digital. O suporte foi incrível e o projeto foi entregue antes do prazo. Recomendo demais!"</p>
+                                    <p class="testimonial-author">- Ricardo Alves, Soluções Criativas</p>
+                                </div>
+                            </div>
+                             <!-- Depoimento 3 -->
+                             <div class="carousel-slide">
+                                <div class="testimonial-slide">
+                                    <img src="https://i.pravatar.cc/150?img=3" alt="Cliente Satisfeito 3">
+                                    <p class="testimonial-quote">"Entrega dentro do prazo, com uma qualidade e atendimento nota 10!"</p>
+                                    <p class="testimonial-author">- Carlos Viana, Fundador da Startup Vision</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-button prev-button">&#10094;</button>
+                    <button class="carousel-button next-button">&#10095;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE CHAMADA FINAL -->
+        <section id="final-cta">
+            <div class="container">
+                <h2>Pronto para Ter Fotos Incríveis?</h2>
+                <p>Não deixe suas memórias guardadas. Dê a elas o tratamento profissional que merecem e impressione a todos.</p>
+                <!-- Botões removidos desta seção -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 EditaPRO. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- SCRIPT DO CARROSSEL -->
+    <script>
+        function setupCarousel(carouselId, intervalTime = 5000) {
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+
+            const slidesContainer = carousel.querySelector('.carousel-slides');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const prevButton = carousel.querySelector('.prev-button');
+            const nextButton = carousel.querySelector('.next-button');
+            
+            let currentIndex = 0;
+            let interval;
+
+            function goToSlide(index) {
+                if (index < 0) {
+                    index = slides.length - 1;
+                } else if (index >= slides.length) {
+                    index = 0;
+                }
+                slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+                currentIndex = index;
+            }
+
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentIndex - 1);
+            }
+
+            function startAutoplay() {
+                interval = setInterval(nextSlide, intervalTime);
+            }
+
+            function stopAutoplay() {
+                clearInterval(interval);
+            }
+
+            nextButton.addEventListener('click', () => {
+                nextSlide();
+                stopAutoplay();
+                startAutoplay(); // Reinicia o timer
+            });
+
+            prevButton.addEventListener('click', () => {
+                prevSlide();
+                stopAutoplay();
+                startAutoplay(); // Reinicia o timer
+            });
+            
+            // Inicia o carrossel
+            startAutoplay();
+        }
+
+        // Configura os dois carrosséis na página
+        document.addEventListener('DOMContentLoaded', () => {
+            setupCarousel('portfolio-carousel', 6000); // Carrossel de portfolio muda a cada 6 segundos
+            setupCarousel('testimonials-carousel', 5000); // Carrossel de depoimentos muda a cada 5 segundos
+        });
+    </script>
+
+</body>
+</html>
