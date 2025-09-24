@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EditaPRO | Transforme Suas Fotos</title>
+    <title>EditaPRO | By.MarinaEdits</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +20,63 @@
             --cor-fundo: #f9fafb; /* Cinza bem claro */
             --cor-branco: #ffffff;
         }
+/* --- LOGO COMO IMAGEM RESPONSIVA --- */
+.logo-img {
+    max-width: 150px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 40px;
+    display: inline-block;
+}
+/* --- BOTÃO SECUNDÁRIO (NOVO) --- */
+.btn-secondary {
+    background: transparent;
+    color: var(--cor-primaria);
+    border: 2px solid var(--cor-primaria);
+    box-shadow: none;
+    margin-left: 15px; /* Espaçamento entre botões */
+}
+.btn-secondary:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 25px rgba(124, 58, 237, 0.4);
+}
+
+/* --- CONTAINER DE BOTÕES NO HERO --- */
+.hero-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre botões */
+}
+
+/* --- ANIMAÇÃO SUAVE NO TÍTULO --- */
+#hero h1 {
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- RESPONSIVIDADE PARA BOTÕES NO HERO --- */
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .btn-secondary {
+        margin-left: 0;
+    }
+}
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -180,19 +237,25 @@
     <main>
 
         <!-- SEÇÃO PRINCIPAL (HERO) -->
-        <section id="hero">
-            <div class="container">
-                <div class="logo">EditaPro</div>
-                <h2>Dê Vida Nova às Suas Fotos com Edição Profissional</h2>
-                <p>Transformamos suas imagens comuns em obras de arte. Rápido, acessível e com qualidade impressionante.</p>
-                <!-- Botões removidos desta seção -->
-            </div>
-        </section>
+<section id="hero">
+    <div class="container">
+        <!-- Substituído o texto por uma imagem responsiva -->
+        <img src="https://i.ibb.co/XGJR0XC/a.jpg" alt="Logo EditaPRO" class="logo-img">
+
+        <h1>Transforme Suas Fotos em Obras de Arte</h1>
+        <p>Edição profissional que dá vida nova às suas imagens. Rápido, acessível e com qualidade impressionante.</p>
+        
+        <div class="hero-buttons">
+            <a href="#pricing" class="btn">Ver Planos</a>
+            <a href="#portfolio" class="btn btn-secondary">Ver Portfólio</a>
+        </div>
+    </div>
+</section>
 
         <!-- SEÇÃO PORTFOLIO (ANTES E DEPOIS) -->
         <section id="portfolio">
             <div class="container">
-                <h2>EDIÇÕES REAIS:</h2>
+                <h2>Trabalhos Entregues:</h2>
                 
                 <div id="portfolio-carousel" class="carousel">
                     <div class="carousel-wrapper">
@@ -252,7 +315,7 @@
                     <!-- PLANO 1 -->
                     <div class="pricing-card">
                         <h3>Foto Avulsa</h3>
-                        <div class="price">R$19<span>,90</span></div>
+                        <div class="price">R$19<span>,00</span></div>
                         <ul>
                             <li>✔️ Edição profissional de 1 foto</li>
                             <li>✔️ Qualquer tipo de modificação</li>
@@ -267,7 +330,7 @@
                     <div class="pricing-card popular">
                         <div class="popular-badge">Mais Popular</div>
                         <h3>Pacote Essencial</h3>
-                        <div class="price">R$47<span>,00</span></div>
+                        <div class="price">R$46<span>,00</span></div>
                          <ul>
                             <li>✔️ Edição profissional de 5 fotos</li>
                             <li>✔️ <strong>Economia de mais de 50%</strong></li>
@@ -337,7 +400,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 EditaPRO. Todos os direitos reservados.</p>
+            <p>&copy; 2025 EditaPRO. Todos os direitos reservados.</p>
         </div>
     </footer>
     
