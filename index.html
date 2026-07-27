@@ -812,7 +812,7 @@ input:focus-visible {
   <div class="container hero-grid">
     <div class="hero-copy reveal is-visible">
       <span class="eyebrow"><span class="dot"></span> Organização financeira, sem esforço</span>
-      <h1>Saiba exatamente <span class="accent">para onde vai</span> o seu dinheiro.</h1>
+      <h1>Tenha uma visão clara de <span class="accent">para onde vai</span> o seu dinheiro.</h1>
       <p class="lede">Zenvest organiza automaticamente suas receitas e despesas em categorias claras, para você acompanhar sua vida financeira em poucos segundos por dia.</p>
       <div class="hero-actions">
         <a href="#planos" class="btn btn-primary">
@@ -828,7 +828,7 @@ input:focus-visible {
         <span class="hero-proof-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </span>
-        <p>Seus dados financeiros são criptografados e nunca compartilhados com terceiros.</p>
+        <p>Seus dados são tratados com segurança e privacidade.</p>
       </div>
     </div>
 
@@ -849,8 +849,8 @@ input:focus-visible {
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10M18 20V4M6 20v-6"/></svg>
         </span>
         <span class="fc-text">
-          <span class="fc-label">Economia do mês</span>
-          <span class="fc-value">+R$ 640</span>
+          <span class="fc-label">Visão do mês</span>
+          <span class="fc-value">Gastos organizados</span>
         </span>
       </div>
 
@@ -927,8 +927,8 @@ input:focus-visible {
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7z"/></svg>
         </span>
         <span class="fc-text">
-          <span class="fc-label">Categorizado</span>
-          <span class="fc-value">100% automático</span>
+          <span class="fc-label">Categorização</span>
+          <span class="fc-value">inteligente dos seus gastos</span>
         </span>
       </div>
     </div>
@@ -995,7 +995,7 @@ input:focus-visible {
           <rect x="202" y="90" width="34" height="140" rx="6" fill="#5C8CF0"/>
           <rect x="256" y="130" width="34" height="100" rx="6" fill="#22C58D"/>
           <rect x="310" y="60" width="34" height="170" rx="6" fill="#8FB0F5"/>
-          <text x="20" y="252" fill="#8993A8" font-family="JetBrains Mono" font-size="11">Categorizado — clareza total sobre os gastos</text>
+          <text x="20" y="252" fill="#8993A8" font-family="JetBrains Mono" font-size="11">Categorização inteligente — clareza sobre seus gastos</text>
         </svg>
       </div>
     </div>
@@ -1102,15 +1102,17 @@ input:focus-visible {
       -->
       <div class="player-shell">
 
-    <video
-        controls
-        playsinline
-        preload="metadata"
-        style="width:100%;height:100%;object-fit:cover;border:0;border-radius:30px;">
+    <div class="video-box">
 
+    <video id="video" playsinline preload="metadata">
         <source src="video.mp4" type="video/mp4">
-
     </video>
+
+    <button id="playButton" class="play-button">
+        ▶
+    </button>
+
+</div>
 
 </div>
 
@@ -1162,7 +1164,7 @@ input:focus-visible {
           <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Dashboard e relatórios</li>
           <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Suporte por e-mail</li>
         </ul>
-        <a class="btn btn-secondary btn-block" href="https://pay.cakto.com.br/hns6tdi_540424" rel="nofollow noopener">Assinar plano mensal</a>
+        <a class="btn btn-secondary btn-block" href="https://pay.cakto.com.br/hns6tdi_540424" rel="nofollow noopener">Começar agora</a>
       </div>
 
       <!-- Trimestral -->
@@ -1181,12 +1183,12 @@ input:focus-visible {
           <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Histórico completo</li>
           <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Suporte prioritário</li>
         </ul>
-        <a class="btn btn-secondary btn-block" href="https://pay.cakto.com.br/3bsto26" rel="nofollow noopener">Assinar plano trimestral</a>
+        <a class="btn btn-secondary btn-block" href="https://pay.cakto.com.br/3bsto26" rel="nofollow noopener">Começar com Zenvest</a>
       </div>
 
       <!-- Vitalício -->
       <div class="plan-card featured reveal reveal-delay-2">
-        <span class="plan-badge">Melhor custo-benefício</span>
+        <span class="plan-badge">Mais escolhido</span>
         <span class="plan-name">Vitalício</span>
         <span class="plan-desc">Pagamento único, acesso para sempre</span>
         <div class="plan-price">
@@ -1258,7 +1260,7 @@ input:focus-visible {
       <p>Leva menos de dois minutos para criar sua conta e ver seu primeiro painel financeiro organizado.</p>
       <div class="hero-actions">
         <a href="#planos" class="btn btn-primary">
-          Começar agora
+          Criar minha conta
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -1319,7 +1321,7 @@ input:focus-visible {
 
     <div class="footer-bottom">
       <p>&copy; <span id="year"></span> Zenvest. Todos os direitos reservados.</p>
-      <p>CNPJ a ser informado &middot; Rio de Janeiro, Brasil</p>
+      <p>CNPJ: 40.348.280/0001-46 · Rio de Janeiro, Brasil</p>
     </div>
   </div>
 </footer>
@@ -1418,7 +1420,7 @@ input:focus-visible {
       // Parâmetros mais restritivos permitidos pela API de incorporação do YouTube:
       // fs=0 remove o botão de tela cheia, modestbranding reduz a marca,
       // rel=0 evita vídeos relacionados de outros canais, playsinline evita
-      // abertura em tela cheia automática em iOS, controls=1 mantém o mínimo
+      // abertura em tela cheia automática em iOS,=1 mantém o mínimo
       // de controles exigido pela plataforma para reprodução/pausa e volume.
       var src = 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID +
         '?autoplay=1&rel=0&modestbranding=1&fs=0&playsinline=1&controls=1&iv_load_policy=3';
@@ -1500,4 +1502,143 @@ input:focus-visible {
 })();
 </script>
 </body>
+<style>
+
+.video-box{
+    position:relative;
+    width:100%;
+    height:100%;
+}
+
+.video-box video{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    border-radius:30px;
+
+}
+
+
+.play-button{
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:75px;
+    height:75px;
+
+    border-radius:50%;
+
+    border:none;
+
+    background:rgba(255,255,255,0.20);
+
+    backdrop-filter:blur(15px);
+
+    color:white;
+
+    font-size:32px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.play-button:hover{
+
+    transform:translate(-50%,-50%) scale(1.08);
+
+}
+
+
+</style>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+
+    const video = document.getElementById("video");
+
+    const playButton = document.getElementById("playButton");
+
+
+    if(!video || !playButton){
+
+        console.log("Video ou botão não encontrado");
+
+        return;
+
+    }
+
+
+    playButton.addEventListener("click", function(){
+
+
+        video.play();
+
+
+        playButton.style.display="none";
+
+
+    });
+
+
+
+    video.addEventListener("click", function(){
+
+
+        if(video.paused){
+
+
+            video.play();
+
+            playButton.style.display="none";
+
+
+        }else{
+
+
+            video.pause();
+
+            playButton.style.display="flex";
+
+
+        }
+
+
+    });
+
+
+
+    video.addEventListener("ended", function(){
+
+
+        playButton.style.display="flex";
+
+
+    });
+
+
+
+});
+
+
+</script>
 </html>
