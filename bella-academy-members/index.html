@@ -138,7 +138,7 @@
     border:1px solid var(--border);
     border-radius:var(--radius-sm);
     color:var(--text);
-    font-size:14px;
+    font-size:16px;
     outline:none;
     transition:border-color .2s ease, box-shadow .2s ease;
   }
@@ -478,7 +478,7 @@
     width:100%; min-height:420px;
     background:var(--card); border:1px solid var(--border);
     border-radius:16px; padding:20px; color:var(--text);
-    font-size:14.3px; line-height:1.7; resize:vertical; outline:none;
+    font-size:16px; line-height:1.7; resize:vertical; outline:none;
     transition:border-color .2s ease;
   }
   textarea#notesArea:focus{ border-color:var(--pink); }
@@ -817,6 +817,7 @@
             <button class="vbtn" onclick="nextAula()"><span id="icNext"></span><span class="lbl">Próxima aula</span></button>
             <button class="vbtn" onclick="toggleFullscreen()"><span id="icFull"></span><span class="lbl">Tela cheia</span></button>
             <button class="vbtn" id="favBtnViewer" onclick="toggleFavCurrent()"><span id="icFavViewer"></span><span class="lbl">Favoritar</span></button>
+            <a class="vbtn" id="openPdfNewTab" href="#" target="_blank" rel="noopener"><span id="icOpenNewTab"></span><span class="lbl">Abrir PDF</span></a>
           </div>
           <button class="vbtn done" id="completeBtn" onclick="toggleCompleteCurrent()"><span id="icDoneViewer"></span><span class="lbl">Marcar como concluída</span></button>
         </div>
@@ -1326,14 +1327,23 @@ function abrirAula(index){
   document.getElementById('aulaTitle').textContent = aula.titulo;
   document.getElementById('aulaSub').textContent = `Módulo 01 · Aula ${index+1} de ${modulo1.length}`;
 
-  const src = aula.pdf && aula.pdf !== 'PDF_LINK_AQUI'
-    ? aula.pdf + '#toolbar=0&navpanes=0&scrollbar=1'
-    : '';
   const frame = document.getElementById('pdfFrame');
-  if(src){
-    frame.src = src;
+  const openBtn = document.getElementById('openPdfNewTab');
+  const temPdf = aula.pdf && aula.pdf !== 'PDF_LINK_AQUI';
+
+  if(temPdf){
+    // Usa o Google Docs Viewer para renderizar o PDF de forma confiável em
+    // qualquer navegador/app (Safari, Chrome, navegador do WhatsApp/Instagram etc).
+    // Abrir o PDF direto no <iframe> falha em vários navegadores/webviews mobile
+    // porque eles não têm um visualizador de PDF nativo embutido.
+    const viewerSrc = 'https://docs.google.com/viewer?embedded=true&url=' + encodeURIComponent(aula.pdf);
+    frame.removeAttribute('srcdoc');
+    frame.src = viewerSrc;
+    openBtn.href = aula.pdf;
+    openBtn.style.display = '';
   }else{
     frame.removeAttribute('src');
+    openBtn.style.display = 'none';
     frame.srcdoc = `<div style="display:flex;align-items:center;justify-content:center;height:100vh;
       font-family:sans-serif;color:#a7a5ac;background:#141417;text-align:center;padding:20px;">
       Adicione o link do PDF em <b style="color:#e34f8c;margin:0 4px;">modulo1[${index}].pdf</b> no código.
@@ -1344,6 +1354,7 @@ function abrirAula(index){
   document.getElementById('icPrev').innerHTML = icon('arrowLeft',16);
   document.getElementById('icNext').innerHTML = icon('arrowRight',16);
   document.getElementById('icFull').innerHTML = icon('fullscreen',16);
+  document.getElementById('icOpenNewTab').innerHTML = icon('file',16);
   document.getElementById('icDoneViewer').innerHTML = icon('check',16);
 
   updateViewerButtons();
